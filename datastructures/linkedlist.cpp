@@ -1,104 +1,111 @@
-struct Node
+#include "linkedlist.h"
+#include <iostream>
+LinkedList::LinkedList(){
+	this->head = NULL;
+}
+LinkedList::LinkedList(int val){
+	this->head = new Node();
+	this->head->data = val;
+	this->head->next = NULL;
+}
+LinkedList::LinkedList(LinkedList & a){
+	this->head = a.head;
+}
+LinkedList::~LinkedList(){
+	delete head;
+}
+Node* LinkedList::getHead(){
+	return this->head;
+}
+LinkedList & LinkedList::operator = (LinkedList& a){
+	this->head = a.head;
+	return a;
+}
+void LinkedList::print()
 {
- int data;
- struct Node *next;
-};
-void Print(Node *head)
-{
-     if(head == NULL)//if the head is pointing to an empty list we don't want to print anything
-         return;
-    else{
-        //logic: print the data, then if next isn't null, we can continue
-        while(true){
-            printf("%d\n", head->data);
-            if(head->next == NULL){
-                   break;
-            }
-            head= head->next;
-        }
-     
-    }
-    // This is a "method-only" submission. 
-  // You only need to complete this method. 
+    Node *cur = this->head;
+    //logic: print the data, then if next isn't null, we can continue
+    while(cur != NULL){
+        std::cout<<cur->data<<" -> ";
+        cur = cur->next;
+    }  
+    std::cout<<"NULL"<<std::endl;
 }
 
-Node* insertAtEnd(Node* head, int val){
+void LinkedList::insertAtEnd(int val){
 	Node* n = new Node();
 	n->data = val;
 	n->next = NULL;
-	Node* cur = head;
+	Node* cur = this->head;
 	//check the empty list
 	if(cur == NULL){
-		return n;
+		this->head = n;
+		return;
 	}
 	//find the right place to insert
 	while(cur->next != NULL){
 		cur = cur->next;
 	}
 	cur->next = n;
-	return head;
 }
-/*
-	Compare 2 linked lists, A and B.
-	return 1 if they are identical, and 0 if they are not
-*/
-int CompareLists(Node *headA, Node *headB){
-	//compare them
-	//1. cover the null pointer problem first
-	if(headA == NULL || headB == NULL){
-		//if one is null, both must be null, else return false
-		if(headA == headB){
-			return 1;
-		}
-		return 0;
+
+LinkedList* LinkedList::clone(){
+	this->print();
+	Node* cur = this->head;
+	LinkedList* a = new LinkedList();
+	while(cur != NULL){
+		std::cout<<"data to be inserted: "<< cur->data<<std::endl;
+		a->insertAtEnd(cur->data);
+		a->print();
+		cur = cur->next;
 	}
-	//2. cover the mismatching data case
-	if(headA->data != headB->data)
-		return 0;
-	return CompareLists(headA->next, headB ->next);
+	return a;
 }
-/*
-	takes in 2 sorted linked lists, and returns a merged list
-*/
-bool isEmpty(Node *h){
-	if(h==NULL)
-		return true;
-	return false;
-}
-int compareTo(Node* headA, Node *headB){
-	if(headA == NULL){
-		//if a is null and b is null, they are equal
-		if(headB == NULL){
-			return 0;
-		}
-		//if a is null and b is null, call a less than b
-		return 1;
-	}
-	if(headB == NULL){
-		//a is not null, but b is null, so a is less than b
-		return -1;
-	}
-	//neither a nor b is null, so determine by their data
-	return headA->data - headB->data;
-}
-Node* MergeLists(Node *headA, Node *headB){
-	//Options: 
-	//1. do it like mergesort's merge
-	//2. alter one of the lists (probably starting with the smaller one)
-	Node* a = headA;
-	Node* b = headB;
-	Node* ret = NULL;
-	int compTo;
-	while(!isEmpty(headA) && !isEmpty(headB)){
-		compTo = compareTo(a, b);
-		if(compTo <=0){
-			insertAtEnd(ret, a);
-			a = a->next;
-		}
-		else {
-			insertAtEnd(ret, b);
-			b = b->next;
-		}
-	}
-	return ret;
-}
+// /*
+// 	Compare 2 linked lists, A and B.
+// 	return 1 if they are identical, and 0 if they are not
+// */
+// int LinkedList::compareLists(LinkedList *headA){
+// 	//compare them
+// 	//1. cover the null pointer problem first
+// 	if(headA->getHead() == NULL || this->head== NULL){
+// 		//if one is null, both must be null, else return false
+// 		if(headA->getHead() == this->head){
+// 			return 1;
+// 		}
+// 		return 0;
+// 	}
+// 	//2. cover the mismatching data case
+// 	if(headA.getHead()->data != this->head->data)
+// 		return 0;
+// 	return compareLists(headA.getHead()->next, this->head->next);
+// }
+// /*
+// 	takes in 2 sorted linked lists, and returns a merged list
+// */
+// bool LinkedList::isEmpty(){
+// 	if(this->head==NULL)
+// 		return true;
+// 	return false;
+// }
+// void LinkedList::mergeLists(LinkedList *headA){
+// 	//Options: 
+// 	//1. do it like mergesort's merge
+// 	//2. alter one of the lists (probably starting with the smaller one)
+// 	LinkedList* a = headA.getHead();
+// 	LinkedList* b = this->head;
+// 	LinkedList* ret = NULL;
+// 	int compTo;
+// 	while(!headA->isEmpty() && !this->isEmpty()){
+// 		compTo = a.compareLists(b);
+// 		if(compTo <=0){
+// 			ret.insertAtEnd(a);
+// 			a = a->getHead()->next;
+// 		}
+// 		else {
+// 			ret.insertAtEnd(b);
+// 			b = b->getHead()->next;
+// 		}
+// 	}
+// 	this->head = ret;
+// }
