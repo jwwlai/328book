@@ -19,8 +19,9 @@
 		Node* getHead();
 		void print();
 		void insertAtEnd(int val);
-		// int compareLists(LinkedList* headA);
-		// bool isEmpty();
-		// Node* mergeLists(LinkedList* headA);
+		int compareTo(LinkedList* headA);
+		bool isEmpty();
+		void mergeLists(LinkedList* headA);
+		void removeFront();
 	};
 #endif 
