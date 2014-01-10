@@ -1,4 +1,4 @@
 import os
-out = os.system("g++ linked_list_tester.cpp")
+out = os.system("javac LinkedListTester.java")
 if out== 0:
-	out = os.system("./a.out")
+	out = os.system("java LinkedListTester")
