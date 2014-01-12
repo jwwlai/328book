@@ -57,20 +57,20 @@ public class Strings {
 	public static boolean isAnagram(String s1, String s2){
 		HashMap<Character, Integer> s1map = makeMap(s1);
 		HashMap<Character, Integer> s2map = makeMap(s2);
-		TreeSet<Character> s1keys = s1map.getKeySet();
+		Set<Character> s1keys = s1map.keySet();
 		for(Character s: s1keys){
-			if(s1map.get(s) != s2map.get(s)
+			if(s1map.get(s) != s2map.get(s))
 				return false;
 		}
 		return true;	
 	}
 	public static HashMap<Character, Integer> makeMap(String s){
-		HashMap<Character, Integer> mapping = new HashMap<Character, Integer>(){
+		HashMap<Character, Integer> mapping = new HashMap<Character, Integer>();
 		for(int i = 0; i < s.length(); ++i){
 			Character cur = s.charAt(i);
 			//if we don't have the character in our map, place it 
 			//with a value of 1
-			if(!mapping.containsKey(cur){
+			if(!mapping.containsKey(cur)){
 				mapping.put(cur, 1);
 			}
 			//if we do, increment the current count
