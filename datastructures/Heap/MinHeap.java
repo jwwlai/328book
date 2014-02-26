@@ -18,6 +18,25 @@ public class MinHeap{
 
 	}
 	/**
+		Find the parent of a given node
+		@return the address of the parent of the input node
+		@param the node that we are trying to find the parent of.
+	*/
+	public int parent(int i){
+		return i/2;//note this algorithm actually wants the floor, but int division gives that already
+	}
+	/**
+		Find the left child of a given node
+		@return the addrest of the parent to the input node.
+		@param the address of the node we are tyring to find the parent of.
+	*/
+	public int leftChild(int i){
+		return 2*i;
+	}
+	public int rightChild(int i){
+
+	}
+	/**
 		@param The value to be inserted into the heap.
 		@return No value.
 	*/

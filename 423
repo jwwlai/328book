@@ -1,0 +1,20 @@
+Chapter 1:
+JSP = JAva Server Pages
+EJB = Enterprise Java Beans
+
+JPA = Java Persistence API
+ORM = Object Relational Mapping
+
+WE will be learning:
+	focusing mostly on web container:
+		JSTL SF, BEAN VALIDATION, JPA, JTA, Web Services
+
+.jar files -> zip files, with some 
+we will be learning war files
+
+=====
+JPA
+	you can annotate your code which in a way that lets your program create entities, (DBMS independent)
+	in your database, without SQL (wow!)
+
+	
